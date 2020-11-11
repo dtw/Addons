@@ -256,10 +256,10 @@ windower.register_event('incoming chunk', function(id, data)
     elseif id == 0xA and zoning_bool then
         zoning_bool = nil
     end
-    
+
 end)
 
-windower.register_event('prerender', function() 
+windower.register_event('prerender', function()
     -- HP % text
     if settings.ShowTargetHPPercent then
         local mob = windower.ffxi.get_mob_by_target('st') or windower.ffxi.get_mob_by_target('t')
@@ -270,7 +270,7 @@ windower.register_event('prerender', function()
 
             -- Adjust position for party member count
             hpp:pos_y(hpp_y_pos[party_info.party1_count])
-            
+
             hpp:update(mob)
             hpp:show()
         else
@@ -279,7 +279,7 @@ windower.register_event('prerender', function()
     else
         hpp:hide()
     end
-    
+
     -- Target distance and ranges text
     if settings.ShowTargetDistance then
         local player = windower.ffxi.get_player()
@@ -292,7 +292,7 @@ windower.register_event('prerender', function()
             elseif t then
                 local s = windower.ffxi.get_mob_by_target('me')
                 t.height = t.z - s.z
-                t.rdistance = (t.distance + t.height^2):sqrt() 
+                t.rdistance = (t.distance + t.height^2):sqrt()
                 t.distance = t.distance:sqrt()
                 local party_info = windower.ffxi.get_party_info()
                 if player.index == t.index then
@@ -304,7 +304,7 @@ windower.register_event('prerender', function()
                     tdistance:show()
                     rdistance:show()
                 end
-        
+
                 -- Adjust position for party member count
                 tdistance:pos_y(tdistance_y_pos[party_info.party1_count])
                 rdistance:pos_y(rdistance_y_pos[party_info.party1_count])
@@ -338,7 +338,7 @@ windower.register_event('prerender', function()
     if settings.ShowPartyTP then
         local party = T(windower.ffxi.get_party())
         local zone = windower.ffxi.get_info().zone
-        
+
         for text, key in tp:it() do
             local member = party[key]
             if zoning_bool then
@@ -363,14 +363,14 @@ windower.register_event('prerender', function()
             end
         end
     end
-    
+
     -- Alliance distance texts
     if settings.ShowPartyDistance then
         local party = T(windower.ffxi.get_party())
         local zone = windower.ffxi.get_info().zone
         local player = windower.ffxi.get_player()
         local target = windower.ffxi.get_mob_by_target('st') or windower.ffxi.get_mob_by_target('t')
-        
+
         for text, key in distance:it() do
             local member = party[key]
             if zoning_bool then

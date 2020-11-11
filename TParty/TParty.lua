@@ -16,15 +16,27 @@ defaults.ShowPartyTP = true
 defaults.ShowPartyDistance = true
 defaults.ShowRanges = true
 
+-- target hpp
+defaults.hpp = {}
+defaults.hpp.pos = {}
+defaults.hpp.pos.x = -104
+defaults.hpp.bg = {}
+--defaults.hpp.bg.alpha = 200
+--defaults.hpp.bg.red = 30
+--defaults.hpp.bg.green = 30
+--defaults.hpp.bg.blue = 30
+defaults.hpp.bg.visible = false
+defaults.hpp.text = {}
+defaults.hpp.alpha = 185
+defaults.hpp.text.red = 115
+defaults.hpp.text.green = 166
+defaults.hpp.text.blue = 213
+--defaults.hpp.text.font = 'Consolas'
+defaults.hpp.text.size = 10
+
 settings = config.load(defaults)
 
 hpp = texts.new('${hpp}', {
-    pos = {
-        x = -104,
-    },
-    bg = {
-        visible = false,
-    },
     flags = {
         right = true,
         bottom = true,
@@ -32,14 +44,8 @@ hpp = texts.new('${hpp}', {
         draggable = false,
         italic = true,
     },
-    text = {
-        size = 10,
-        alpha = 185,
-        red = 115,
-        green = 166,
-        blue = 213,
-    },
-})
+},
+settings.hpp)
 
 tdistance = texts.new('${distance||%.2f}', {
     pos = {
